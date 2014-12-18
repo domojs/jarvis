@@ -1,0 +1,96 @@
+@!(model) 
+<style>
+    form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+    
+    #messages
+    {
+        padding:22px;
+        
+    }
+    
+    #messages li
+    {
+        display:block;
+        position:relative;
+        margin-bottom:22px;
+        padding:5px 10px;
+    }
+    
+    #messages .arrow,
+    #messages .arrow:after
+    {
+        position:absolute;
+        border-width:11px;
+        width:0;
+        height:0;
+        border-color:transparent;
+        border-style:solid;
+    }
+  
+    #messages .arrow:after
+    {
+        content:" ";
+        border-width:10px;
+        bottom:1px;
+    }
+  
+    #messages .top > .arrow
+    {
+        bottom:-22px;
+    }
+    
+    #messages .top > .arrow:after
+    {
+        border-style:solid;
+        border-top-color:lightblue;
+        border-bottom-width:0
+    }
+
+    #messages .bottom > .arrow
+    {
+        top:-10px;
+    }
+    
+    #messages .bottom > .arrow:after
+    {
+        border-style:solid;
+        border-bottom-color:lightgreen;
+        border-top-width:0
+    }
+
+    
+    #messages .col-md-offset-6 > .arrow,
+    #messages .col-xs-offset-4 > .arrow
+    {
+        right:50px;
+    }
+</style>
+<h3>Crokmou</h3>
+<ul id="messages" class="list-unstyled row"></ul>
+<form action="" class="row">
+  <div class="col-xs-11"><input id="m" class="form-control" /></div><button class="col-xs-1 btn btn-primary">Send</button>
+</form>
+<script>
+  $('form').submit(function(){
+    $('#messages').append($('<li class="col-xs-offset-4 bg-primary col-xs-8 col-md-offset-5 col-md-7 top">').text($('#m').val()))
+	$.get('/api/chat/ask', {q:$('#m').val()}, function(response){
+    	$('#messages').append($('<li class="clearfix bg-warning col-xs-8 col-md-7 bottom">').text(response));
+    	$('#m').val('');
+    	$('html,body').animate({
+                scrollTop: 2000
+            }, 1000, 'swing');
+    }, 'text');
+	return false;
+  });
+  $('#m').autocomplete({source:function(request, response){
+        debugger;
+        var result=[];
+        $('#messages .bg-primary').each(function(){
+            var text=$(this).text();
+            if(text.indexOf(request.term)>=0 && result.indexOf(text)<0)
+                result.push(text);
+        });
+        response(result);
+
+  }})
+</script>

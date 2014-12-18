@@ -12,7 +12,8 @@ var writer=function(text)
 		return colors.green('Crokmou > '+text);
 	return colors.red('Crokmou > '+$('util').inspect(text));
 }
-
 var repl=require('repl');
 var eval=require('repl-middleware');
+process.stdin.setEncoding('utf8');
+global.eval=eval;
 repl.start({'prompt':'Moi > ',useColors:true,input:process.stdin, output:process.stdout, eval:eval, writer:writer});
