@@ -82,15 +82,4 @@
     }, 'text');
 	return false;
   });
-  $('#m').autocomplete({source:function(request, response){
-        debugger;
-        var result=[];
-        $('#messages .bg-primary').each(function(){
-            var text=$(this).text();
-            if(text.indexOf(request.term)>=0 && result.indexOf(text)<0)
-                result.push(text);
-        });
-        response(result);
-
-  }})
 </script>
