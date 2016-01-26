@@ -1,11 +1,11 @@
 {
-	"name":"domojs-char",
-	"version":"0.1.0",
-	"repository":{
-		"type":"git",
-		"url":"https://github.com/npenin/jarvis.git"
-	},
-	"dependencies":
-	{
-	}
+  "name": "domojs-char",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npenin/jarvis.git"
+  },
+  "dependencies": {
+    "sugar": "^1.4.1"
+  }
 }
