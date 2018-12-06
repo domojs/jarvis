@@ -6,6 +6,6 @@
     "url": "https://github.com/npenin/jarvis.git"
   },
   "dependencies": {
-    "sugar": "^1.4.1"
+    "sugar": "^2.0.6"
   }
 }
